@@ -2,10 +2,13 @@ import Column from "../components/layout/Column";
 
 export const AboutMe = () => {
   return (
-    <Column className="flex flex-col items-center">
-      <p className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
+    <section id="AboutMe">
+      <h1 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
+        About Me
+      </h1>
+      <p className="mb-4 text-4 tracking-tight  text-center text-gray-900 dark:text-white">
         About Me
       </p>
-    </Column>
+    </section>
   );
 };
