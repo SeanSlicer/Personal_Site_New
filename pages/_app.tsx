@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <div>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         pauseOnHover
       />
       <Component {...pageProps} />
-    </>
+    </div>
   );
 }
 
