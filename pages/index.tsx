@@ -1,7 +1,14 @@
 import type { NextPage } from "next";
+import { Footer } from "../components/layout/Footer";
+import Form from "../components/Form";
 
 const Home: NextPage = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <Form />
+      <Footer />
+    </>
+  );
 };
 
 export default Home;
