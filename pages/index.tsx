@@ -8,7 +8,7 @@ import { Nav } from "../components/layout/Nav";
 const Home: NextPage = () => {
   return (
     <>
-      <div className="py-6"></div>
+      <div className="sm:py-6" />
       <AboutMe />
 
       <Form />
