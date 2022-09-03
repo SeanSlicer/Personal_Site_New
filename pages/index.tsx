@@ -9,10 +9,10 @@ const Home: NextPage = () => {
   return (
     <>
       <Nav />
-      <Column className="flex flex-col items-center">
-        <AboutMe />
-      </Column>
+      <AboutMe />
+
       <Form />
+
       <Footer />
     </>
   );
