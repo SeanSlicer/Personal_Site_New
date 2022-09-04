@@ -4,11 +4,13 @@ import Form from "../components/Form";
 import Column from "../components/layout/Column";
 import { AboutMe } from "../components/AboutMe";
 import { Nav } from "../components/layout/Nav";
+import { Socials } from "../components/Socials";
 
 const Home: NextPage = () => {
   return (
     <>
       <div className="sm:py-6" />
+      <Socials />
       <AboutMe />
 
       <Form />
