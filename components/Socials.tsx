@@ -1,12 +1,28 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 export const Socials = () => {
+  const Copy = (StringToCopy: string) => {
+    navigator.clipboard.writeText(StringToCopy);
+    toast.success("Copied To Clipboard", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
     <div className="flex flex-wrap justify-center items-center">
       {/* :Linkedin */}
       <a
-        href="#linkedin"
-        className="m-2 w-10 h-10 inline-flex justify-center items-center shadow-sm rounded-full bg-gray-700 text-white"
+        target={"_blank"}
+        href="https://www.linkedin.com/in/sean-slicer-518ba6206/"
+        className="m-2 w-10 h-10 opacity-75 inline-flex border justify-center items-center shadow-sm rounded-full bg-gray-700 text-white transition duration-300 hover:bg-gray-600 hover:opacity-100 hover:ring-2 focus:outline-none focus:ring-4"
+        rel="noreferrer"
       >
         {/* ::linkedin svg */}
         <svg
@@ -20,8 +36,10 @@ export const Socials = () => {
 
       {/* :Github */}
       <a
-        href="#github"
-        className="m-2 w-10 h-10 inline-flex justify-center items-center shadow-sm rounded-full bg-gray-700 text-white"
+        href="https://github.com/SeanSlicer"
+        rel="noreferrer"
+        target={"_blank"}
+        className="m-2 w-10 h-10 opacity-75 inline-flex border justify-center items-center shadow-sm rounded-full bg-gray-700 text-white transition duration-300 hover:bg-gray-600 hover:opacity-100 hover:ring-2 focus:outline-none focus:ring-4"
       >
         {/* ::github svg */}
         <svg
@@ -33,26 +51,14 @@ export const Socials = () => {
         </svg>
       </a>
 
-      {/* :Email */}
-      <a
-        href="#email"
-        className="m-2 w-10 h-10 inline-flex justify-center items-center shadow-sm rounded-full bg-gray-700 text-white"
-      >
-        {/* ::email svg */}
-        <svg
-          className="w-5 h-5 fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z" />
-        </svg>
-      </a>
-
       {/* :Copy Link */}
       <button
         type="button"
         aria-label="copy link"
-        className="m-2 w-10 h-10 inline-flex justify-center items-center shadow-sm rounded-full bg-gray-700 text-white"
+        onClick={(e) => {
+          Copy("https://seanslicer.com/");
+        }}
+        className="m-2 w-10 h-10 opacity-75 inline-flex border justify-center items-center shadow-sm rounded-full bg-gray-700 text-white transition duration-300 hover:bg-gray-600 hover:opacity-100 hover:ring-2 "
       >
         {/* ::copylink svg */}
         <svg
