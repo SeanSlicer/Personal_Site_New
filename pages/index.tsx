@@ -8,15 +8,17 @@ import { Socials } from "../components/Socials";
 
 const Home: NextPage = () => {
   return (
-    <>
+    <Column>
       <div className="sm:py-6" />
+
       <Socials />
+
       <AboutMe />
 
       <Form />
 
       <Footer />
-    </>
+    </Column>
   );
 };
 
