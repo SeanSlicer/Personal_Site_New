@@ -12,8 +12,10 @@ export const AboutMe = () => {
             <div className="relative group">
               <div
                 className={`absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 ${
-                  isSafari ? "" : "group-hover:opacity-100"
-                } transition duration-500 group-hover:duration-400 `}
+                  isSafari
+                    ? " "
+                    : " group-hover:opacity-100 transition duration-500 group-hover:duration-400 "
+                }`}
               ></div>
               <div className="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
                 <p className="my-4 text-4xl tracking-tight text-center text-gray-900 dark:text-white">
