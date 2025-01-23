@@ -19,7 +19,7 @@ export default function Form() {
             setButtonDisable(false);
             e.preventDefault();
             axios
-              .post("/api/hello", {
+              .post("/api/airtable", {
                 name: name,
                 email: email,
                 message: message,
