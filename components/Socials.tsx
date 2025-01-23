@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-export const Socials = () => {
+const Socials = () => {
   const Copy = (StringToCopy: string) => {
     navigator.clipboard.writeText(StringToCopy);
     toast.success("Copied To Clipboard", {
@@ -55,7 +55,7 @@ export const Socials = () => {
       <button
         type="button"
         aria-label="copy link"
-        onClick={(e) => {
+        onClick={() => {
           Copy("https://seanslicer.com/");
         }}
         className="m-2 w-10 h-10 opacity-75 inline-flex border justify-center items-center shadow-sm rounded-full bg-gray-700 text-white transition duration-300 hover:bg-gray-600 hover:opacity-100 hover:ring-2 "
@@ -72,3 +72,5 @@ export const Socials = () => {
     </div>
   );
 };
+
+export default Socials;

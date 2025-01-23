@@ -1,14 +1,7 @@
-import Color from "color";
-import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 
-type Props = {
-  color?: string;
-};
-
-export const Footer: FC<Props> = (props) => {
+const Footer: FC = () => {
   const [date, setDate] = useState<Date>();
-  const { color } = props;
 
   useEffect(() => {
     setDate(new Date());
@@ -22,3 +15,5 @@ export const Footer: FC<Props> = (props) => {
     </footer>
   );
 };
+
+export default Footer;

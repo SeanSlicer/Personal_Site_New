@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import Airtable, { base } from "airtable";
+import Airtable from "airtable";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -17,7 +17,7 @@ export default async function handler(
     const db = new Airtable({ apiKey: apiKey }).base(baseId);
     const table = db(tableName);
 
-    const record = await table.create({
+    await table.create({
       Name: req.body.name,
       Email: req.body.email,
       Message: req.body.message,
