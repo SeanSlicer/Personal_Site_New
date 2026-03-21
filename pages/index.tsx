@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Footer from "../components/layout/Footer";
-import Form from "../components/Form";
 import Column from "../components/layout/Column";
 import AboutMe from "../components/AboutMe";
 import Socials from "../components/Socials";
