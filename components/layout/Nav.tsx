@@ -1,8 +1,6 @@
-import React from "react";
-
 const Nav = () => {
   return (
-    <nav className="rounded-b-2xl bg-gradient-to-r bg-gradient-to-tl bg-gradient-to-l from-rose-400 via-fuchsia-500 to-indigo-500 md:block hidden  ">
+    <nav className="rounded-b-2xl bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 md:block hidden  ">
       <div className="mx-auto max-w-7xl px-2 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-center">
