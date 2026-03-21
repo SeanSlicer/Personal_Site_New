@@ -14,8 +14,6 @@ const Home: NextPage = () => {
 
       <AboutMe />
 
-      <Form />
-
       <Footer />
     </Column>
   );
