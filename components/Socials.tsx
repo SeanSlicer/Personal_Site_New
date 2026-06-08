@@ -15,13 +15,17 @@ const Socials = () => {
     });
   };
 
+  const iconClass =
+    "group flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-mute transition-all duration-300 hover:border-accent/40 hover:bg-accent/10 hover:text-accent-glow focus:outline-none focus:ring-2 focus:ring-accent/40";
+
   return (
-    <div className="flex flex-wrap justify-center items-center">
+    <div className="flex flex-wrap items-center gap-3">
       {/* :Linkedin */}
       <a
         target={"_blank"}
         href="https://www.linkedin.com/in/sean-slicer-518ba6206/"
-        className="m-2 w-10 h-10 opacity-75 inline-flex border justify-center items-center shadow-sm rounded-full bg-gray-700 text-white transition duration-300 hover:bg-gray-600 hover:opacity-100 hover:ring-2 focus:outline-none focus:ring-4"
+        aria-label="LinkedIn"
+        className={iconClass}
         rel="noreferrer"
       >
         {/* ::linkedin svg */}
@@ -39,7 +43,8 @@ const Socials = () => {
         href="https://github.com/SeanSlicer"
         rel="noreferrer"
         target={"_blank"}
-        className="m-2 w-10 h-10 opacity-75 inline-flex border justify-center items-center shadow-sm rounded-full bg-gray-700 text-white transition duration-300 hover:bg-gray-600 hover:opacity-100 hover:ring-2 focus:outline-none focus:ring-4"
+        aria-label="GitHub"
+        className={iconClass}
       >
         {/* ::github svg */}
         <svg
@@ -51,14 +56,25 @@ const Socials = () => {
         </svg>
       </a>
 
+      {/* :Email */}
+      <a
+        href="mailto:sean.slicer@gmail.com"
+        aria-label="Email"
+        className={iconClass}
+      >
+        <svg className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z" />
+        </svg>
+      </a>
+
       {/* :Copy Link */}
       <button
         type="button"
-        aria-label="copy link"
+        aria-label="Copy link to site"
         onClick={() => {
           Copy("https://seanslicer.com/");
         }}
-        className="m-2 w-10 h-10 opacity-75 inline-flex border justify-center items-center shadow-sm rounded-full bg-gray-700 text-white transition duration-300 hover:bg-gray-600 hover:opacity-100 hover:ring-2 "
+        className={iconClass}
       >
         {/* ::copylink svg */}
         <svg

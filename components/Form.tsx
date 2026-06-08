@@ -1,6 +1,21 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Reveal from "./Reveal";
+import Socials from "./Socials";
+
+const toastOpts = {
+  position: "top-right" as const,
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
+const fieldClass =
+  "block w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-chalk placeholder-mute outline-none transition-colors duration-200 focus:border-accent/50 focus:bg-white/[0.05] focus:ring-2 focus:ring-accent/20";
 
 export default function Form() {
   const [name, setName] = useState("");
@@ -9,116 +24,106 @@ export default function Form() {
   const [buttonDisable, setButtonDisable] = useState(false);
 
   return (
-    <section id="ContactMe">
-      <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-        <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
-          Contact Me
-        </h2>
-        <form
-          onSubmit={async (e) => {
-            setButtonDisable(true);
-            e.preventDefault();
-            axios
-              .post("/api/airtable", {
-                name: name,
-                email: email,
-                message: message,
-              })
-              .then(function (response) {
-                setName("");
-                setEmail("");
-                setMessage("");
-                if (response) {
+    <section id="contact" className="relative mx-auto max-w-content px-6 py-28 sm:py-36">
+      <div className="grid gap-14 lg:grid-cols-2">
+        <Reveal>
+          <p className="font-mono text-xs uppercase tracking-[0.35em] text-accent">{"// contact"}</p>
+          <h2 className="mt-4 text-[clamp(2.2rem,5.5vw,4rem)] font-bold leading-[1.05] tracking-tightest">
+            Let&apos;s build
+            <br />
+            <span className="text-gradient">something.</span>
+          </h2>
+          <p className="mt-6 max-w-md text-lg leading-relaxed text-mute">
+            Got a role, a project, or just want to talk shop? Drop me a line —
+            I&apos;ll get back to you within a day or two.
+          </p>
+
+          <div className="mt-8">
+            <Socials />
+          </div>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <form
+            onSubmit={async (e) => {
+              setButtonDisable(true);
+              e.preventDefault();
+              axios
+                .post("/api/airtable", { name, email, message })
+                .then(function (response) {
+                  setName("");
+                  setEmail("");
+                  setMessage("");
+                  if (response) {
+                    setButtonDisable(false);
+                    toast.success(
+                      "Your message has been sent! I'll respond in the next 24-48 hours.",
+                      toastOpts
+                    );
+                  }
+                })
+                .catch(function (error) {
                   setButtonDisable(false);
-                  toast.success(
-                    "your message has been sent! I will respond in the next 24-48 hours.",
-                    {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                    }
-                  );
-                }
-              })
-              .catch(function (error) {
-                setButtonDisable(false);
-                toast.error("your message did not send. Please try again..", {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
+                  toast.error("Your message did not send. Please try again.", toastOpts);
+                  console.log(error);
                 });
-                console.log(error);
-              });
-          }}
-          action="#"
-          className="space-y-8"
-        >
-          <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Your Name
+            }}
+            action="#"
+            className="surface space-y-6 rounded-3xl p-7 sm:p-9"
+          >
+            <div>
+              <label htmlFor="name" className="mb-2 block text-sm font-medium text-chalk/80">
+                Your name
+              </label>
               <input
                 value={name}
                 autoComplete="name"
                 type="text"
                 id="name"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                onChange={(e) => setName(e.target.value)}
+                className={fieldClass}
                 placeholder="John Smith"
                 required
               />
-            </label>
-          </div>
-          <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Your Email
+            </div>
+            <div>
+              <label htmlFor="email" className="mb-2 block text-sm font-medium text-chalk/80">
+                Your email
+              </label>
               <input
                 value={email}
                 type="email"
                 autoComplete="email"
                 id="email"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                onChange={(e) => setEmail(e.target.value)}
+                className={fieldClass}
                 placeholder="name@email.com"
                 required
               />
-            </label>
-          </div>
-          <div className="sm:col-span-2">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-              Your message
+            </div>
+            <div>
+              <label htmlFor="message" className="mb-2 block text-sm font-medium text-chalk/80">
+                Your message
+              </label>
               <textarea
                 value={message}
                 id="message"
                 required
-                onChange={(e) => {
-                  setMessage(e.target.value);
-                }}
-                rows={6}
-                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Leave a comment..."
-              ></textarea>
-            </label>
-          </div>
-          <button
-            type="submit"
-            disabled={buttonDisable}
-            className="py-3 px-5 text-sm ring-primary-300 font-medium text-center text-grey-600 opacity-75 rounded-lg bg-gradient-to-tl from-pink-300 via-purple-300 to-indigo-400 sm:w-fit transition duration-500 hover:opacity-100 hover:ring-2 focus:ring-4 focus:outline-none dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-          >
-            Send message
-          </button>
-        </form>
+                onChange={(e) => setMessage(e.target.value)}
+                rows={5}
+                className={fieldClass}
+                placeholder="Leave a message..."
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={buttonDisable}
+              className="w-full rounded-xl bg-accent px-6 py-3.5 text-sm font-semibold text-ink transition-all duration-300 hover:bg-accent-glow hover:shadow-[0_0_30px_-8px_rgba(52,211,153,0.8)] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {buttonDisable ? "Sending..." : "Send message"}
+            </button>
+          </form>
+        </Reveal>
       </div>
     </section>
   );

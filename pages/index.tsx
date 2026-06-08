@@ -1,23 +1,25 @@
 import type { NextPage } from "next";
-import Footer from "../components/layout/Footer";
-import Form from "../components/Form";
-import Column from "../components/layout/Column";
+import Nav from "../components/layout/Nav";
+import Hero from "../components/Hero";
 import AboutMe from "../components/AboutMe";
-import Socials from "../components/Socials";
+import Experience from "../components/Experience";
+import Projects from "../components/Projects";
+import Skills from "../components/Skills";
+import Form from "../components/Form";
+import Footer from "../components/layout/Footer";
 
 const Home: NextPage = () => {
   return (
-    <Column>
-      <div className="sm:py-6" />
-
-      <Socials />
-
+    <main className="grain relative">
+      <Nav />
+      <Hero />
       <AboutMe />
-
+      <Experience />
+      <Projects />
+      <Skills />
       <Form />
-
       <Footer />
-    </Column>
+    </main>
   );
 };
 

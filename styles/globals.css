@@ -2,6 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink text-chalk font-sans;
+    overflow-x: hidden;
+  }
+
+  /* Respect users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  ::selection {
+    background: rgba(52, 211, 153, 0.28);
+    color: #f5f5f7;
+  }
+
+  /* Slim, dark scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #06070a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #20242e;
+    border-radius: 9999px;
+    border: 2px solid #06070a;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2c313d;
+  }
+}
+
+@layer components {
+  /* Frosted glass surface (Apple-style) */
+  .glass {
+    background: rgba(14, 16, 22, 0.6);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  /* Soft hairline card */
+  .surface {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(110deg, #f5f5f7 10%, #6ee7b7 45%, #a78bfa 80%, #f5f5f7 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Reveal-on-scroll: starts hidden, .is-visible triggers the animation */
+  .reveal {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  .reveal.is-visible {
+    animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+@layer utilities {
+  /* Film grain overlay */
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
 }

@@ -1,27 +1,44 @@
+import React from "react";
+import Reveal from "./Reveal";
+import { ABOUT } from "../lib/content";
+
+const STATS = [
+  { value: "6+", label: "Years building software" },
+  { value: "5", label: "Engineering teams" },
+  { value: "∞", label: "AI-assisted workflows" },
+];
+
 const AboutMe = () => {
   return (
-    <section id="AboutMe">
-      <h1 className=" my-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
-        About Me
-      </h1>
-      <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-        <article id="AboutMeDescription">
-          <div className="max-w-7xl mx-auto">
-            <div className="relative group">
-              <div
-                className={`absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25
-                `}
-              ></div>
-              <div className="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
-                <p className="my-4 text-4xl tracking-tight text-center text-gray-900 dark:text-white">
-                  I&apos;m Sean. An efficient engineer with great detailing
-                  skills, a hunger for knowledge, and pride myself on keeping up
-                  to date with modern technologies.
-                </p>
-              </div>
+    <section id="about" className="relative mx-auto max-w-content px-6 py-28 sm:py-36">
+      <Reveal>
+        <p className="font-mono text-xs uppercase tracking-[0.35em] text-accent">{"// about"}</p>
+      </Reveal>
+
+      <Reveal delay={80}>
+        <p className="mt-8 max-w-4xl text-[clamp(1.6rem,3.6vw,2.75rem)] font-medium leading-[1.25] tracking-tight text-chalk">
+          {ABOUT.split(" ").map((word, i) => (
+            <span key={i}>
+              {/* subtle emphasis on a few key words */}
+              {/clean|fast|tools|AI-assisted|agentic/i.test(word) ? (
+                <span className="text-gradient">{word} </span>
+              ) : (
+                <span className="text-chalk/55">{word} </span>
+              )}
+            </span>
+          ))}
+        </p>
+      </Reveal>
+
+      <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/8 sm:grid-cols-3">
+        {STATS.map((stat, i) => (
+          <Reveal key={stat.label} delay={i * 90} className="bg-white/[0.02]">
+            <div className="flex h-full flex-col justify-center px-8 py-10">
+              <span className="text-5xl font-bold tracking-tightest text-accent-glow">{stat.value}</span>
+              <span className="mt-2 text-sm text-mute">{stat.label}</span>
             </div>
-          </div>
-        </article>
+          </Reveal>
+        ))}
       </div>
     </section>
   );
