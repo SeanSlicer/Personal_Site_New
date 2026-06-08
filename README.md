@@ -1,6 +1,6 @@
 # seanslicer.com
 
-Personal site for Sean Slicer — a single-page, Apple-Keynote-style portfolio
+Personal site me — a single-page, portfolio site
 with a coral → violet palette, built with Next.js and Tailwind. All motion is
 hand-rolled (IntersectionObserver reveals + small scroll/pointer hooks) with no
 animation libraries.
@@ -34,9 +34,6 @@ yarn start      # serve the production build
 - `styles/globals.css` — theme tokens, reveal keyframes, helpers
 - `tailwind.config.js` — palette and animation utilities
 
-> Note: there is no contact form or backend — contact is via the social links
-> in the Contact section.
-
 ## Deploy
 
-Deployed on Vercel — pushes to `main` ship automatically.
+Deployed on Netlify — pushes to `main` ship automatically.
