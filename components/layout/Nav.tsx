@@ -25,12 +25,11 @@ const Nav = () => {
           scrolled ? "glass shadow-lg shadow-black/40" : "border border-transparent"
         }`}
       >
-        <a
-          href="#top"
-          className="group flex items-center gap-2 font-mono text-sm text-chalk"
-        >
-          <span className="text-accent">~/</span>
-          <span className="font-semibold tracking-tight">sean.slicer</span>
+        <a href="#top" className="flex items-center gap-2.5 text-sm font-semibold tracking-tight text-chalk">
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br from-coral to-violet-accent text-xs font-bold text-ink">
+            S
+          </span>
+          Sean Slicer
         </a>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -47,7 +46,7 @@ const Nav = () => {
 
         <a
           href="#contact"
-          className="rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent-glow transition-all duration-300 hover:bg-accent/20 hover:shadow-[0_0_24px_-6px_rgba(52,211,153,0.6)]"
+          className="rounded-full bg-gradient-to-r from-coral to-violet-accent px-4 py-1.5 text-sm font-semibold text-ink transition-all duration-300 hover:shadow-[0_0_24px_-4px_rgba(255,107,107,0.7)]"
         >
           Let&apos;s talk
         </a>

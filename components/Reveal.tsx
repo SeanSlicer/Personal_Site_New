@@ -1,20 +1,21 @@
-import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
 
 type Props = {
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
   className?: string;
   /** Stagger delay in ms, applied once the element scrolls into view. */
   delay?: number;
+  /** "up" fades + slides up; "scale" fades + scales in (Keynote card reveal). */
+  variant?: "up" | "scale";
   children: React.ReactNode;
 };
 
 /**
- * Wraps content so it fades + slides up the first time it enters the viewport.
- * Uses IntersectionObserver (no animation libraries) and unobserves after the
- * first reveal so it only plays once.
+ * Wraps content so it fades/scales into view the first time it enters the
+ * viewport. Uses IntersectionObserver (no animation libraries) and unobserves
+ * after the first reveal so it only plays once.
  */
-const Reveal: React.FC<Props> = ({ as = "div", className, delay = 0, children }) => {
+const Reveal: React.FC<Props> = ({ as = "div", className, delay = 0, variant = "up", children }) => {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
 
@@ -39,12 +40,16 @@ const Reveal: React.FC<Props> = ({ as = "div", className, delay = 0, children })
   }, []);
 
   const Tag = as as any;
+  const classes = [
+    variant === "scale" ? "reveal-scale" : "reveal",
+    visible ? "is-visible" : "",
+    className ?? "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <Tag
-      ref={ref}
-      style={delay ? { animationDelay: `${delay}ms` } : undefined}
-      className={classNames("reveal", visible && "is-visible", className)}
-    >
+    <Tag ref={ref} style={delay ? { animationDelay: `${delay}ms` } : undefined} className={classes}>
       {children}
     </Tag>
   );

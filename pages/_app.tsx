@@ -1,7 +1,5 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Head from "next/head";
 import { Inter, JetBrains_Mono } from "next/font/google";
 
@@ -35,18 +33,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta property="og:type" content="website" />
       </Head>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
       <Component {...pageProps} />
     </div>
   );

@@ -1,122 +1,78 @@
-import { useEffect, useState } from "react";
-import { HERO_LINES } from "../lib/content";
-
-/** Types out the hero terminal lines character-by-character, then loops the cursor. */
-function useTypewriter(lines: string[]) {
-  const [rendered, setRendered] = useState<string[]>([""]);
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setRendered(lines);
-      setDone(true);
-      return;
-    }
-
-    let line = 0;
-    let char = 0;
-    let active = true;
-    const out: string[] = [""];
-
-    const tick = () => {
-      if (!active) return;
-      if (line >= lines.length) {
-        setDone(true);
-        return;
-      }
-      const current = lines[line];
-      out[line] = current.slice(0, char + 1);
-      setRendered([...out]);
-      char += 1;
-      if (char >= current.length) {
-        line += 1;
-        char = 0;
-        out[line] = "";
-        setTimeout(tick, 380);
-      } else {
-        // prompt lines type a touch faster than output lines
-        setTimeout(tick, current.startsWith("$") ? 42 : 22);
-      }
-    };
-
-    const start = setTimeout(tick, 500);
-    return () => {
-      active = false;
-      clearTimeout(start);
-    };
-  }, [lines]);
-
-  return { rendered, done };
-}
+import { useMouseParallax } from "../lib/hooks";
 
 const Hero = () => {
-  const { rendered, done } = useTypewriter(HERO_LINES);
+  const m = useMouseParallax();
 
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-28 pb-20"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-28 pb-24"
     >
-      {/* Ambient gradient field */}
+      {/* Ambient gradient field — drifts with the pointer for depth */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/3 h-[60vmax] w-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/20 opacity-60 blur-[120px] animate-blob-drift" />
-        <div className="absolute right-[12%] top-[55%] h-[42vmax] w-[42vmax] rounded-full bg-violet-accent/20 opacity-50 blur-[120px] animate-blob-drift [animation-delay:-6s]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,#06070a_100%)]" />
+        <div
+          className="absolute left-1/2 top-[38%] h-[62vmax] w-[62vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-coral/25 opacity-70 blur-[130px] animate-blob-drift"
+          style={{ transform: `translate3d(calc(-50% + ${m.x * 24}px), calc(-50% + ${m.y * 24}px), 0)` }}
+        />
+        <div
+          className="absolute right-[14%] top-[58%] h-[44vmax] w-[44vmax] rounded-full bg-violet-accent/25 opacity-60 blur-[130px] animate-blob-drift [animation-delay:-7s]"
+          style={{ transform: `translate3d(${m.x * -30}px, ${m.y * -30}px, 0)` }}
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,#0a0a0c_100%)]" />
       </div>
 
-      <p className="mb-6 font-mono text-xs uppercase tracking-[0.35em] text-accent animate-fade-up">
-        Software Engineer · Kansas City
+      {/* Floating glass shards (Keynote depth) */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 hidden lg:block">
+        <div
+          className="glass absolute left-[12%] top-[26%] rounded-2xl px-4 py-3 text-sm text-mute animate-float"
+          style={{ transform: `translate3d(${m.x * 36}px, ${m.y * 36}px, 0)` }}
+        >
+          <span className="text-coral-glow">●</span> TypeScript · C# / .NET
+        </div>
+        <div
+          className="glass absolute right-[11%] top-[34%] rounded-2xl px-4 py-3 text-sm text-mute animate-float [animation-delay:-3s]"
+          style={{ transform: `translate3d(${m.x * 48}px, ${m.y * 48}px, 0)` }}
+        >
+          <span className="text-violet-glow">●</span> AI-assisted engineering
+        </div>
+        <div
+          className="glass absolute bottom-[22%] left-[18%] rounded-2xl px-4 py-3 text-sm text-mute animate-float [animation-delay:-5s]"
+          style={{ transform: `translate3d(${m.x * 28}px, ${m.y * 28}px, 0)` }}
+        >
+          <span className="text-coral-glow">●</span> data &amp; search systems
+        </div>
+      </div>
+
+      <p className="eyebrow mb-7 animate-fade-up">Software Engineer — Kansas City</p>
+
+      {/* Headline with subtle pointer tilt */}
+      <div className="[perspective:1200px]">
+        <h1
+          className="max-w-5xl text-center text-[clamp(3.2rem,12vw,9.5rem)] font-bold leading-[0.9] tracking-tightest transition-transform duration-300 ease-out animate-fade-up [animation-delay:80ms]"
+          style={{ transform: `rotateX(${m.y * -4}deg) rotateY(${m.x * 4}deg)` }}
+        >
+          <span className="text-gradient animate-gradient-pan bg-clip-text">Sean Slicer</span>
+        </h1>
+      </div>
+
+      <p className="mt-8 max-w-xl text-center text-lg leading-relaxed text-mute animate-fade-up [animation-delay:160ms] sm:text-xl">
+        I build full-stack products and the data systems behind them — and I lean
+        hard into AI-assisted, agentic development to ship faster.
       </p>
 
-      <h1 className="max-w-5xl text-center text-[clamp(3rem,11vw,8.5rem)] font-bold leading-[0.92] tracking-tightest animate-fade-up [animation-delay:80ms]">
-        <span className="text-gradient animate-gradient-pan bg-clip-text">Sean Slicer</span>
-      </h1>
-
-      <p className="mt-7 max-w-xl text-center text-lg leading-relaxed text-mute animate-fade-up [animation-delay:160ms] sm:text-xl">
-        I build full-stack products and the data systems behind them — with a
-        heavy dose of AI-assisted, agentic development.
-      </p>
-
-      <div className="mt-10 flex flex-wrap items-center justify-center gap-3 animate-fade-up [animation-delay:240ms]">
+      <div className="mt-11 flex flex-wrap items-center justify-center gap-3 animate-fade-up [animation-delay:240ms]">
         <a
           href="#work"
-          className="rounded-full bg-chalk px-6 py-3 text-sm font-semibold text-ink transition-transform duration-300 hover:scale-[1.03]"
+          className="rounded-full bg-chalk px-7 py-3.5 text-sm font-semibold text-ink transition-transform duration-300 hover:scale-[1.03]"
         >
           See my work
         </a>
         <a
           href="#contact"
-          className="rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-chalk transition-colors duration-300 hover:border-white/30 hover:bg-white/5"
+          className="rounded-full border border-white/15 px-7 py-3.5 text-sm font-medium text-chalk transition-colors duration-300 hover:border-white/30 hover:bg-white/5"
         >
           Get in touch
         </a>
-      </div>
-
-      {/* Terminal card */}
-      <div className="mt-16 w-full max-w-xl animate-fade-up [animation-delay:320ms]">
-        <div className="surface overflow-hidden rounded-2xl text-left shadow-2xl shadow-black/50">
-          <div className="flex items-center gap-2 border-b border-white/5 px-4 py-3">
-            <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-            <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-            <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-            <span className="ml-3 font-mono text-xs text-mute">— bash —</span>
-          </div>
-          <div className="min-h-[150px] px-5 py-4 font-mono text-sm leading-7">
-            {rendered.map((line, i) => {
-              const isPrompt = line.startsWith("$");
-              const isLast = i === rendered.length - 1;
-              return (
-                <div key={i} className={isPrompt ? "text-accent-glow" : "text-chalk/90"}>
-                  {isPrompt ? <span className="text-accent">➜ </span> : <span className="text-mute">{"  "}</span>}
-                  {isPrompt ? line.slice(2) : line}
-                  {isLast && !done && (
-                    <span className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-accent animate-blink" />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
       </div>
 
       <a

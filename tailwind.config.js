@@ -9,17 +9,17 @@ module.exports = {
     extend: {
       colors: {
         ink: {
-          DEFAULT: "#06070a",
-          soft: "#0b0d12",
-          card: "#0e1016",
+          DEFAULT: "#0a0a0c",
+          soft: "#0d0d12",
+          card: "#131319",
         },
-        accent: {
-          DEFAULT: "#34d399",
-          glow: "#6ee7b7",
-          dim: "#0f8a63",
+        coral: {
+          DEFAULT: "#ff6b6b",
+          glow: "#ff8e8e",
         },
         violet: {
           accent: "#a78bfa",
+          glow: "#c4b5fd",
         },
         chalk: "#f5f5f7",
         mute: "#86868b",
@@ -29,19 +29,15 @@ module.exports = {
         mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       letterSpacing: {
-        tightest: "-0.04em",
+        tightest: "-0.045em",
       },
       maxWidth: {
-        content: "1100px",
+        content: "1120px",
       },
       keyframes: {
         "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(28px)" },
+          "0%": { opacity: "0", transform: "translateY(34px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        blink: {
-          "0%, 49%": { opacity: "1" },
-          "50%, 100%": { opacity: "0" },
         },
         marquee: {
           "0%": { transform: "translateX(0)" },
@@ -56,13 +52,17 @@ module.exports = {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
         },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-14px)" },
+        },
       },
       animation: {
-        "fade-up": "fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards",
-        blink: "blink 1.1s steps(1) infinite",
-        marquee: "marquee 32s linear infinite",
-        "blob-drift": "blob-drift 18s ease-in-out infinite",
+        "fade-up": "fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        marquee: "marquee 36s linear infinite",
+        "blob-drift": "blob-drift 20s ease-in-out infinite",
         "gradient-pan": "gradient-pan 8s ease infinite",
+        float: "float 7s ease-in-out infinite",
       },
     },
   },

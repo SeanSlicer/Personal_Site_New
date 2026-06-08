@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Reveal keyframes are defined here (not only in tailwind.config) so they exist
+ * regardless of whether a matching `animate-*` utility appears in markup —
+ * Tailwind only emits @keyframes for utilities it actually sees, which would
+ * otherwise leave .reveal-scale stuck at opacity:0.
+ */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @layer base {
   :root {
     color-scheme: dark;
@@ -18,7 +46,6 @@
     overflow-x: hidden;
   }
 
-  /* Respect users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -33,59 +60,75 @@
   }
 
   ::selection {
-    background: rgba(52, 211, 153, 0.28);
+    background: rgba(255, 107, 107, 0.3);
     color: #f5f5f7;
   }
 
-  /* Slim, dark scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #06070a;
+    background: #0a0a0c;
   }
   ::-webkit-scrollbar-thumb {
-    background: #20242e;
+    background: #23232c;
     border-radius: 9999px;
-    border: 2px solid #06070a;
+    border: 2px solid #0a0a0c;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #2c313d;
+    background: #2f2f3a;
   }
 }
 
 @layer components {
   /* Frosted glass surface (Apple-style) */
   .glass {
-    background: rgba(14, 16, 22, 0.6);
+    background: rgba(19, 19, 25, 0.6);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   /* Soft hairline card */
   .surface {
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  /* Gradient text */
+  /* Coral -> violet gradient text */
   .text-gradient {
-    background: linear-gradient(110deg, #f5f5f7 10%, #6ee7b7 45%, #a78bfa 80%, #f5f5f7 100%);
-    background-size: 200% auto;
+    background: linear-gradient(110deg, #ffffff 4%, #ff6b6b 38%, #a78bfa 72%, #ffffff 100%);
+    background-size: 220% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  /* Reveal-on-scroll: starts hidden, .is-visible triggers the animation */
+  /* Section eyebrow: small coral dot + tracked label */
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.3em] text-mute;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-1.5 w-1.5 rounded-full;
+    background: linear-gradient(120deg, #ff6b6b, #a78bfa);
+    box-shadow: 0 0 12px 1px rgba(255, 107, 107, 0.6);
+  }
+
+  /* Reveal-on-scroll */
   .reveal {
     opacity: 0;
     will-change: transform, opacity;
   }
   .reveal.is-visible {
-    animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .reveal-scale {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  .reveal-scale.is-visible {
+    animation: scale-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 }
 
@@ -104,5 +147,10 @@
   .mask-fade-x {
     -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
     mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent);
+    mask-image: linear-gradient(to bottom, #000 60%, transparent);
   }
 }

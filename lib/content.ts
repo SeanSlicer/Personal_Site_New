@@ -2,7 +2,6 @@
 // Centralized here so the section components stay presentational.
 
 export type Job = {
-  hash: string; // short "commit" hash for the git-log treatment
   role: string;
   company: string;
   location: string;
@@ -20,17 +19,10 @@ export type Project = {
 };
 
 export type SkillGroup = {
-  key: string; // shown as the object key in the code-style card
+  key: string; // stable id / React key
   label: string;
   items: string[];
 };
-
-export const HERO_LINES = [
-  "$ whoami",
-  "sean_slicer — software engineer",
-  "$ cat focus.txt",
-  "full-stack · TypeScript · C# / .NET · AI-assisted dev",
-];
 
 export const ABOUT =
   "I'm Sean — a software engineer who likes shipping things that hold up. " +
@@ -89,7 +81,6 @@ export const SKILLS: SkillGroup[] = [
 
 export const EXPERIENCE: Job[] = [
   {
-    hash: "a7f3e9c",
     role: "Software Engineer",
     company: "Intercontinental Exchange (ICE)",
     location: "Remote",
@@ -105,7 +96,6 @@ export const EXPERIENCE: Job[] = [
     ],
   },
   {
-    hash: "c41b8d2",
     role: "Software Engineer",
     company: "Cybership",
     location: "Remote",
@@ -119,7 +109,6 @@ export const EXPERIENCE: Job[] = [
     ],
   },
   {
-    hash: "9e2a07f",
     role: "Software Engineer",
     company: "First National Bank of Omaha",
     location: "Remote",
@@ -133,7 +122,6 @@ export const EXPERIENCE: Job[] = [
     ],
   },
   {
-    hash: "5d6c1ab",
     role: "Software Engineer II",
     company: "Chris-leef",
     location: "Lenexa, KS",
@@ -146,7 +134,6 @@ export const EXPERIENCE: Job[] = [
     ],
   },
   {
-    hash: "1b0f4e8",
     role: "Software Engineer",
     company: "Evental",
     location: "Remote",
@@ -175,11 +162,3 @@ export const PROJECTS: Project[] = [
     ],
   },
 ];
-
-export const EDUCATION = {
-  program: "Full Stack Development Bootcamp",
-  school: "Centriq Training",
-  location: "Kansas City, MO",
-  period: "Jun 2021 — Dec 2021",
-  note: "Focused on ASP.NET, C#, React, and the broader .NET ecosystem. Earned a merit scholarship based on prior development experience.",
-};
