@@ -5,7 +5,7 @@ import AboutMe from "../components/AboutMe";
 import Experience from "../components/Experience";
 import Projects from "../components/Projects";
 import Skills from "../components/Skills";
-import Form from "../components/Form";
+import Contact from "../components/Contact";
 import Footer from "../components/layout/Footer";
 
 const Home: NextPage = () => {
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       <Experience />
       <Projects />
       <Skills />
-      <Form />
+      <Contact />
       <Footer />
     </main>
   );

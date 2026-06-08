@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { HERO_LINES } from "../lib/content";
 
 /** Types out the hero terminal lines character-by-character, then loops the cursor. */

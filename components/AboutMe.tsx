@@ -1,4 +1,3 @@
-import React from "react";
 import Reveal from "./Reveal";
 import { ABOUT } from "../lib/content";
 
