@@ -150,18 +150,6 @@ export const EXPERIENCE: Job[] = [
 
 export const PROJECTS: Project[] = [
   {
-    name: "SoSoc",
-    tagline: "A full social platform, built from scratch.",
-    period: "2023 — Present",
-    stack: ["Next.js 15", "tRPC", "Supabase", "Prisma", "TypeScript", "Vitest", "React Native / Expo"],
-    bullets: [
-      "Feed with infinite scroll, photo posts, real-time DMs and group chats, notifications, and private accounts with follow-request approval.",
-      "Rolled custom JWT auth with bcrypt instead of a library, plus sliding-window rate limiting on all auth endpoints to block brute-force attempts.",
-      "Shipped a React Native / Expo mobile app sharing the same tRPC API, with Supabase Realtime for live updates and expo-secure-store for tokens.",
-      "Developed with agentic Claude Code workflows guided by a CLAUDE.md spec; fully typed with strict TypeScript and Vitest coverage.",
-    ],
-  },
-  {
     name: "Waypoint",
     tagline: "A Discord alternative for the desktop.",
     period: "2026 — Present",
@@ -171,6 +159,18 @@ export const PROJECTS: Project[] = [
       "Ranked roles with bitfield permissions, private channels, and moderation, enforced identically on the server and in the client from one shared implementation.",
       "Auth built on argon2id, short-lived access JWTs, and rotating refresh tokens with theft detection, plus Google OIDC through the system browser with PKCE.",
       "One set of zod schemas in a shared package drives server validation, response serialization, and client types; typecheck, lint, and integration tests gate every push in CI.",
+    ],
+  },
+  {
+    name: "SoSoc",
+    tagline: "A full social platform, built from scratch.",
+    period: "2023 — Present",
+    stack: ["Next.js 15", "tRPC", "Supabase", "Prisma", "TypeScript", "Vitest", "React Native / Expo"],
+    bullets: [
+      "Feed with infinite scroll, photo posts, real-time DMs and group chats, notifications, and private accounts with follow-request approval.",
+      "Rolled custom JWT auth with bcrypt instead of a library, plus sliding-window rate limiting on all auth endpoints to block brute-force attempts.",
+      "Shipped a React Native / Expo mobile app sharing the same tRPC API, with Supabase Realtime for live updates and expo-secure-store for tokens.",
+      "Developed with agentic Claude Code workflows guided by a CLAUDE.md spec; fully typed with strict TypeScript and Vitest coverage.",
     ],
   },
 ];
