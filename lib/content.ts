@@ -150,6 +150,18 @@ export const EXPERIENCE: Job[] = [
 
 export const PROJECTS: Project[] = [
   {
+    name: "Waypoint",
+    tagline: "A Discord alternative for the desktop.",
+    period: "2026 — Present",
+    stack: ["Electron", "React 19", "TypeScript", "Fastify", "Postgres / Drizzle", "Redis", "LiveKit"],
+    bullets: [
+      "Realtime chat over a custom WebSocket gateway — messages, replies, attachments, link unfurls, GIFs, typing indicators, and presence, fanned out across nodes with Redis pub/sub.",
+      "Ranked roles with bitfield permissions, private channels, and moderation, enforced identically on the server and in the client from one shared implementation.",
+      "Auth built on argon2id, short-lived access JWTs, and rotating refresh tokens with theft detection, plus Google OIDC through the system browser with PKCE.",
+      "One set of zod schemas in a shared package drives server validation, response serialization, and client types; typecheck, lint, and integration tests gate every push in CI.",
+    ],
+  },
+  {
     name: "SoSoc",
     tagline: "A full social platform, built from scratch.",
     period: "2023 — Present",
